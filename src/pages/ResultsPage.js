@@ -4,15 +4,17 @@ import {
   Card,
   CardContent,
   CardHeader,
-  CardMedia,
   CardActionArea,
   CardActions,
   Typography,
   Button,
+  Grid,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import { MavContext } from '../context/MavContext';
+import DialogComponent from '../components/Dialog/Dialog';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,19 +23,30 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  codeblock: {
+    margin: '10px',
+    borderRadius: '5px',
+    border: 'solid 1px black',
+    backgroundColor: '#000',
+  },
+  whiteText: {
+    color: '#fff',
+  },
 }));
 
-export default function MultiActionAreaCard() {
+export default function ResultsPage() {
   const classes = useStyles();
-  const handleCopyClick = content => {
+  const { checkedItems } = React.useContext(MavContext);
+  const [modal, setActiveModal] = React.useState(undefined);
+  const handleCopyClick = (content) => {
     navigator.clipboard.writeText(content);
   };
   const handleRetryClick = () => {
     const mock = new MockAdapter(axios, { delayResponse: 2000 });
 
-    mock.onGet("/apiendpoint").reply(200, {
-        users: [{ id: 1, name: "John Smith" }],
-      });
+    mock.onGet('/apiendpoint').reply(200, {
+      users: [{ id: 1, name: 'John Smith' }],
+    });
 
     axios
       .get('/apiendpoint')
@@ -44,39 +57,59 @@ export default function MultiActionAreaCard() {
         console.error('There was a problem with the fetch operation: ', error);
       });
   };
+
+  const openModal = (item) => () => {
+    setActiveModal(item);
+  }
+
   return (
-    <Container maxWidth="sm" className={classes.root}>
+    <Container maxWidth={false} className={classes.root}>
       <Typography variant="h2" component="h1" gutterBottom align="center">
         Aquí van los resultados
       </Typography>
-      <Card sx={{ maxWidth: 345 }} raised>
-        <CardHeader title="Shrimp and Chorizo Paella" />
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="https://picsum.photos/500/150"
-            alt="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary" onClick={handleCopyClick('copy')}>
-            Copiar en el portapapeles
-          </Button>
-          <Button size="small" color="primary" onClick={handleRetryClick}>
-            Reintentar
-          </Button>
-        </CardActions>
-      </Card>
+      <Grid container spacing={6} columns={12} justifyContent="center">
+        {checkedItems.map((item, i) => (
+          <Grid item xs={4} sm={4} md={4} lg={4} xl={4} key={i}>
+            <Card raised>
+              <CardHeader title={item} />
+              <CardActionArea>
+                <CardContent className={classes.codeblock} onClick={openModal(item)}>
+                  <Typography variant="body" className={classes.whiteText}>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Vestibulum vitae quam nibh. Cras venenatis pharetra porta.
+                    Vivamus nisl magna, sodales at tempus sed, vestibulum sed
+                    magna. Sed elementum elit sed libero ultricies, a egestas
+                    dolor laoreet. Vivamus placerat luctus justo non
+                    ullamcorper. Nulla a aliquam lacus. Sed vehicula enim in mi
+                    tempor, sed porttitor ligula gravida. Vestibulum aliquet,
+                    orci rutrum tincidunt elementum, nulla mauris pellentesque
+                    felis, quis posuere quam lectus at dolor. Quisque eget massa
+                    lectus. Nulla dictum nisi a lorem sollicitudin commodo.
+                    Quisque aliquam mi quis tincidunt molestie. Sed tincidunt,
+                    purus sit amet convallis ultricies, est dui sodales felis,
+                    quis mollis tortor elit in mauris. Phasellus nec est
+                    suscipit, congue est non, ullamcorper libero. Duis id sem
+                    tellus.
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <Button
+                  size="small"
+                  color="primary"
+                  onClick={handleCopyClick('copy')}
+                >
+                  Copiar en el portapapeles
+                </Button>
+                <Button size="small" color="primary" onClick={handleRetryClick}>
+                  Reintentar
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+      <DialogComponent open={modal} onClose={() => setActiveModal(undefined)} item={modal}/>
     </Container>
   );
 }
