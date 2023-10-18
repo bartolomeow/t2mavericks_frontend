@@ -41,12 +41,12 @@ const SpecificationsPage = () => {
   useEffect(() => {
     let promptObj = {};
     checkedItems.forEach((item) => {
-      promptObj = {...promptObj, [item]: ''}
+      promptObj = { ...promptObj, [item]: '' };
     });
     promptObj['general'] = '';
-    
+
     setPromptItem(promptObj);
-  }, [])
+  }, []);
 
   const handleSubmit = () => {
     handlePrompts(promptItem);
@@ -69,7 +69,7 @@ const SpecificationsPage = () => {
         fullWidth
         multiline
         onChange={(e) => {
-          setPromptItem({...promptItem, 'general': e.target.value});
+          setPromptItem({ ...promptItem, general: e.target.value });
         }}
       />
       <Typography
