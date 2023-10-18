@@ -11,7 +11,6 @@ import { ArrowBack } from '@material-ui/icons';
 
 const Header = () => {
   const navigate = useNavigate();
-  const showBackButton = navigate.length > 2;
 
   const handleLandingClick = () => {
     navigate('/landing');
@@ -28,9 +27,9 @@ const Header = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        {showBackButton && <IconButton edge="start" color="inherit" onClick={handleBackClick}>
+        <IconButton edge="start" color="inherit" onClick={handleBackClick}>
           <ArrowBack />
-        </IconButton>}
+        </IconButton>
         <Typography variant="h6" style={{ flexGrow: 1 }}>
           T2Mavericks
         </Typography>

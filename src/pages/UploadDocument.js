@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
@@ -33,6 +33,12 @@ const UploadDocument = () => {
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (document) {
+      navigate('/landing');
+    }
+  }, [document, navigate]);
+
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
@@ -40,9 +46,6 @@ const UploadDocument = () => {
   const handleUpload = () => {
     handleDocument(file);
     setSuccess(true);
-    setTimeout(() => {
-      navigate('/landing');
-    }, 3000);
   };
 
   return (

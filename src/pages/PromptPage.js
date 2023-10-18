@@ -37,11 +37,12 @@ const SpecificationsPage = () => {
   const navigate = useNavigate();
   const { checkedItems, handlePrompts } = React.useContext(MavContext);
   const [promptItem, setPromptItem] = React.useState({});
+  const [generalChanged, setGeneralChanged] = React.useState(false);
 
   useEffect(() => {
     let promptObj = {};
     checkedItems.forEach((item) => {
-      promptObj = { ...promptObj, [item]: '' };
+      promptObj = { ...promptObj, [item]: `Genérame un ${item}.` };
     });
     promptObj['general'] = '';
 
@@ -49,6 +50,12 @@ const SpecificationsPage = () => {
   }, [checkedItems]);
 
   const handleSubmit = () => {
+    const newPromptItem = promptItem;
+    checkedItems.map((item) => {
+      const itemDescription = promptItem[item];
+      newPromptItem[item] = `${promptItem.general}. ${itemDescription}`;
+    });
+
     handlePrompts(promptItem);
     navigate('/results');
   };
@@ -69,7 +76,8 @@ const SpecificationsPage = () => {
         fullWidth
         multiline
         onChange={(e) => {
-          setPromptItem({ ...promptItem, general: e.target.value });
+          setPromptItem({ ...promptItem, general: `Las características de mi proyecto son las siguientes: ${e.target.value}` });
+          setGeneralChanged(true);
         }}
       />
       <Typography
@@ -99,7 +107,7 @@ const SpecificationsPage = () => {
               minRows={4}
               onChange={(e) => {
                 const newPromptItem = promptItem;
-                newPromptItem[item] = e.target.value;
+                newPromptItem[item] = `Genérame un ${item} con las siguientes especificaciones: ${e.target.value}`;
                 setPromptItem(newPromptItem);
               }}
             />
