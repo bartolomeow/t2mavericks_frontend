@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ResultsPage = () => {
   const classes = useStyles();
-  const { checkedItems, promptResponse } = React.useContext(MavContext);
+  const { checkedItems, promptResponse, loading } = React.useContext(MavContext);
   const [modal, setActiveModal] = React.useState(undefined);
   const handleCopyClick = (content) => {
     navigator.clipboard.writeText(content);
@@ -65,7 +65,7 @@ const ResultsPage = () => {
 
   return (
     <Container maxWidth={false} className={classes.root}>
-      {promptResponse ? (
+      {!loading ? (
         <>
           <Typography variant="h2" component="h1" gutterBottom align="center">
             Aquí van los resultados

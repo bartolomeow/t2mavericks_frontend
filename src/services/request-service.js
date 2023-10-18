@@ -1,5 +1,6 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
+import epics from '../mocks/epics.json';
 
 const RequestService = {
   get: (url, body) => {
@@ -8,9 +9,22 @@ const RequestService = {
     mock.onGet(url).reply(200, {
       users: [{ id: 1, name: 'John Smith' }],
     });
-
     return axios
       .get(url, body)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        return error;
+      });
+  },
+  getEpics: (url) => {
+    const mock = new MockAdapter(axios, { delayResponse: 2000 });
+
+    mock.onGet(url).reply(200, epics);
+
+    return axios
+      .get(url)
       .then((response) => {
         return response;
       })

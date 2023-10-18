@@ -1,0 +1,316 @@
+{
+    "epics": [
+        {
+            "name": "Plataforma de Ideación",
+            "description": "Crear una plataforma en línea para recopilar ideas de manera colaborativa y votar por las mejores.",
+            "userStories": [
+                {
+                    "name": "Registro de usuarios",
+                    "description": "Como usuario, quiero poder registrarme en la plataforma para poder enviar y votar por ideas.",
+                    "definitionOfReady": "Se han definido los campos necesarios para el registro y se ha establecido un sistema de autenticación seguro.",
+                    "definitionOfDone": "Los usuarios pueden registrarse y acceder a la plataforma de manera segura."
+                },
+                {
+                    "name": "Envío de ideas",
+                    "description": "Como usuario, quiero poder enviar mis ideas a la plataforma para que sean votadas por otros usuarios.",
+                    "definitionOfReady": "Se ha establecido un formulario para enviar ideas y se han definido los campos necesarios.",
+                    "definitionOfDone": "Los usuarios pueden enviar sus ideas y estas se muestran en la plataforma para ser votadas."
+                },
+                {
+                    "name": "Votación de ideas",
+                    "description": "Como usuario, quiero poder votar por las ideas que me parezcan más interesantes para que sean consideradas en el proyecto.",
+                    "definitionOfReady": "Se ha establecido un sistema de votación y se han definido las reglas para la selección de las ideas más votadas.",
+                    "definitionOfDone": "Los usuarios pueden votar por las ideas y se han seleccionado las más votadas para ser consideradas en el proyecto."
+                }
+            ]
+        },
+        {
+            "name": "Brainstorming Virtual",
+            "description": "Realizar sesiones de brainstorming virtuales para reunir aportes de todo el equipo de desarrollo.",
+            "userStories": [
+                {
+                    "name": "Organización de sesiones de brainstorming",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder organizar sesiones de brainstorming virtuales para reunir aportes de todo el equipo.",
+                    "definitionOfReady": "Se ha establecido un calendario para las sesiones de brainstorming y se han definido los temas a tratar.",
+                    "definitionOfDone": "Se han realizado las sesiones de brainstorming y se han recopilado los aportes de todo el equipo."
+                },
+                {
+                    "name": "Participación en sesiones de brainstorming",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder participar en las sesiones de brainstorming virtuales para aportar mis ideas.",
+                    "definitionOfReady": "Se ha establecido un sistema de videoconferencia para las sesiones de brainstorming y se han definido las reglas para la participación.",
+                    "definitionOfDone": "Los miembros del equipo han participado en las sesiones de brainstorming y han aportado sus ideas."
+                }
+            ]
+        },
+        {
+            "name": "User Persona Cards",
+            "description": "Diseñar tarjetas de usuario (user persona cards) para definir y comunicar perfiles de usuarios clave.",
+            "userStories": [
+                {
+                    "name": "Definición de perfiles de usuario",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir los perfiles de usuario clave para poder diseñar la aplicación de manera efectiva.",
+                    "definitionOfReady": "Se han recopilado datos sobre los usuarios potenciales y se han definido los perfiles de usuario clave.",
+                    "definitionOfDone": "Se han definido los perfiles de usuario clave y se han documentado en las user persona cards."
+                },
+                {
+                    "name": "Diseño de user persona cards",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder diseñar las user persona cards para comunicar los perfiles de usuario clave.",
+                    "definitionOfReady": "Se han definido los campos necesarios para las user persona cards y se han establecido las reglas de diseño.",
+                    "definitionOfDone": "Se han diseñado las user persona cards y se han compartido con el equipo de desarrollo."
+                }
+            ]
+        },
+        {
+            "name": "Mapa de Empatía",
+            "description": "Utilizar mapas de empatía para comprender las necesidades, deseos y retos de los usuarios.",
+            "userStories": [
+                {
+                    "name": "Definición de necesidades, deseos y retos de los usuarios",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir las necesidades, deseos y retos de los usuarios para poder diseñar la aplicación de manera efectiva.",
+                    "definitionOfReady": "Se han recopilado datos sobre los usuarios potenciales y se han establecido las reglas para la definición de necesidades, deseos y retos.",
+                    "definitionOfDone": "Se han definido las necesidades, deseos y retos de los usuarios y se han documentado en el mapa de empatía."
+                },
+                {
+                    "name": "Diseño del mapa de empatía",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder diseñar el mapa de empatía para visualizar las necesidades, deseos y retos de los usuarios.",
+                    "definitionOfReady": "Se han definido los campos necesarios para el mapa de empatía y se han establecido las reglas de diseño.",
+                    "definitionOfDone": "Se ha diseñado el mapa de empatía y se ha compartido con el equipo de desarrollo."
+                }
+            ]
+        },
+        {
+            "name": "Design Thinking",
+            "description": "Aplicar la metodología de Design Thinking para fomentar la creatividad y la empatía con los usuarios.",
+            "userStories": [
+                {
+                    "name": "Definición de los pasos de la metodología de Design Thinking",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir los pasos de la metodología de Design Thinking para poder aplicarla de manera efectiva.",
+                    "definitionOfReady": "Se ha investigado sobre la metodología de Design Thinking y se han definido los pasos necesarios.",
+                    "definitionOfDone": "Se han definido los pasos de la metodología de Design Thinking y se han compartido con el equipo de desarrollo."
+                },
+                {
+                    "name": "Aplicación de la metodología de Design Thinking",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder aplicar la metodología de Design Thinking para fomentar la creatividad y la empatía con los usuarios.",
+                    "definitionOfReady": "Se han definido los pasos de la metodología de Design Thinking y se han establecido las reglas para su aplicación.",
+                    "definitionOfDone": "Se ha aplicado la metodología de Design Thinking y se han obtenido resultados que han sido compartidos con el equipo de desarrollo."
+                }
+            ]
+        },
+        {
+            "name": "Mockups Interactivos",
+            "description": "Crear prototipos interactivos de baja fidelidad para visualizar rápidamente la interfaz de la aplicación.",
+            "userStories": [
+                {
+                    "name": "Definición de los elementos de la interfaz de la aplicación",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir los elementos de la interfaz de la aplicación para poder crear los mockups interactivos.",
+                    "definitionOfReady": "Se han definido los elementos necesarios para la interfaz de la aplicación y se han establecido las reglas para su diseño.",
+                    "definitionOfDone": "Se han definido los elementos de la interfaz de la aplicación y se han compartido con el equipo de desarrollo."
+                },
+                {
+                    "name": "Creación de los mockups interactivos",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder crear los mockups interactivos para visualizar rápidamente la interfaz de la aplicación.",
+                    "definitionOfReady": "Se han definido los elementos de la interfaz de la aplicación y se han establecido las reglas para la creación de los mockups interactivos.",
+                    "definitionOfDone": "Se han creado los mockups interactivos y se han compartido con el equipo de desarrollo para obtener retroalimentación."
+                }
+            ]
+        },
+        {
+            "name": "Revisión de Competencia",
+            "description": "Investigar a la competencia para identificar oportunidades y diferenciadores clave.",
+            "userStories": [
+                {
+                    "name": "Definición de los competidores",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir los competidores para poder investigarlos de manera efectiva.",
+                    "definitionOfReady": "Se han identificado los competidores y se han establecido las reglas para su investigación.",
+                    "definitionOfDone": "Se han definido los competidores y se han compartido con el equipo de desarrollo."
+                },
+                {
+                    "name": "Investigación de los competidores",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder investigar a los competidores para identificar oportunidades y diferenciadores clave.",
+                    "definitionOfReady": "Se han definido los competidores y se han establecido las reglas para su investigación.",
+                    "definitionOfDone": "Se ha investigado a los competidores y se han identificado oportunidades y diferenciadores clave."
+                }
+            ]
+        },
+        {
+            "name": "Toma de Requerimientos",
+            "description": "Realizar entrevistas con los stakeholders para capturar requisitos esenciales y expectativas.",
+            "userStories": [
+                {
+                    "name": "Definición de los stakeholders",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir los stakeholders para poder realizar las entrevistas de manera efectiva.",
+                    "definitionOfReady": "Se han identificado los stakeholders y se han establecido las reglas para las entrevistas.",
+                    "definitionOfDone": "Se han definido los stakeholders y se han compartido con el equipo de desarrollo."
+                },
+                {
+                    "name": "Realización de entrevistas con los stakeholders",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder realizar entrevistas con los stakeholders para capturar requisitos esenciales y expectativas.",
+                    "definitionOfReady": "Se han definido los stakeholders y se han establecido las reglas para las entrevistas.",
+                    "definitionOfDone": "Se han realizado las entrevistas con los stakeholders y se han capturado los requisitos esenciales y expectativas."
+                }
+            ]
+        },
+        {
+            "name": "Lean Canvas",
+            "description": "Emplear el modelo Lean Canvas para esbozar la estrategia y el modelo de negocio de la aplicación.",
+            "userStories": [
+                {
+                    "name": "Definición de los elementos del Lean Canvas",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir los elementos del Lean Canvas para poder emplearlo de manera efectiva.",
+                    "definitionOfReady": "Se ha investigado sobre el modelo Lean Canvas y se han definido los elementos necesarios.",
+                    "definitionOfDone": "Se han definido los elementos del Lean Canvas y se han compartido con el equipo de desarrollo."
+                },
+                {
+                    "name": "Creación del Lean Canvas",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder crear el Lean Canvas para esbozar la estrategia y el modelo de negocio de la aplicación.",
+                    "definitionOfReady": "Se han definido los elementos del Lean Canvas y se han establecido las reglas para su creación.",
+                    "definitionOfDone": "Se ha creado el Lean Canvas y se ha compartido con el equipo de desarrollo para obtener retroalimentación."
+                }
+            ]
+        },
+        {
+            "name": "Priorización Matriz",
+            "description": "Utilizar una matriz de priorización para clasificar las características y funcionalidades según su importancia.",
+            "userStories": [
+                {
+                    "name": "Definición de las características y funcionalidades",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir las características y funcionalidades de la aplicación para poder priorizarlas.",
+                    "definitionOfReady": "Se han definido las características y funcionalidades de la aplicación y se han establecido las reglas para su priorización.",
+                    "definitionOfDone": "Se han definido las características y funcionalidades de la aplicación y se han compartido con el equipo de desarrollo."
+                },
+                {
+                    "name": "Priorización de las características y funcionalidades",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder priorizar las características y funcionalidades de la aplicación según su importancia.",
+                    "definitionOfReady": "Se han definido las características y funcionalidades de la aplicación y se ha establecido una matriz de priorización.",
+                    "definitionOfDone": "Se han priorizado las características y funcionalidades de la aplicación según su importancia y se han compartido con el equipo de desarrollo."
+                }
+            ]
+        },
+        {
+            "name": "Página en Confluence",
+            "description": "Establecer una página en Confluence para documentar el progreso, hallazgos y decisiones del proyecto.",
+            "userStories": [
+                {
+                    "name": "Creación de la página en Confluence",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder crear la página en Confluence para documentar el progreso, hallazgos y decisiones del proyecto.",
+                    "definitionOfReady": "Se ha establecido una plantilla para la página en Confluence y se han definido los campos necesarios.",
+                    "definitionOfDone": "Se ha creado la página en Confluence y se han compartido con el equipo de desarrollo."
+                },
+                {
+                    "name": "Actualización de la página en Confluence",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder actualizar la página en Confluence para documentar el progreso, hallazgos y decisiones del proyecto.",
+                    "definitionOfReady": "Se ha establecido una plantilla para la página en Confluence y se han definido los campos necesarios.",
+                    "definitionOfDone": "Se ha actualizado la página en Confluence con el progreso, hallazgos y decisiones del proyecto."
+                }
+            ]
+        },
+        {
+            "name": "Crear Historias de Usuario",
+            "description": "Desarrollar historias de usuario en Rally para definir tareas y funcionalidades específicas.",
+            "userStories": [
+                {
+                    "name": "Definición de las historias de usuario",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir las historias de usuario para poder desarrollar tareas y funcionalidades específicas.",
+                    "definitionOfReady": "Se han definido las características y funcionalidades de la aplicación y se han establecido las reglas para la definición de las historias de usuario.",
+                    "definitionOfDone": "Se han definido las historias de usuario y se han compartido con el equipo de desarrollo."
+                },
+                {
+                    "name": "Desarrollo de las historias de usuario",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder desarrollar las historias de usuario para implementar tareas y funcionalidades específicas.",
+                    "definitionOfReady": "Se han definido las historias de usuario y se han establecido las reglas para su desarrollo.",
+                    "definitionOfDone": "Se han desarrollado las historias de usuario y se han implementado las tareas y funcionalidades específicas."
+                }
+            ]
+        },
+        {
+            "name": "Test de Viabilidad",
+            "description": "Realizar pruebas de viabilidad técnica y de mercado antes de invertir en el desarrollo a gran escala.",
+            "userStories": [
+                {
+                    "name": "Definición de los criterios de viabilidad",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir los criterios de viabilidad para poder realizar las pruebas de manera efectiva.",
+                    "definitionOfReady": "Se han definido los criterios de viabilidad y se han establecido las reglas para su evaluación.",
+                    "definitionOfDone": "Se han definido los criterios de viabilidad y se han compartido con el equipo de desarrollo."
+                },
+                {
+                    "name": "Realización de pruebas de viabilidad",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder realizar pruebas de viabilidad técnica y de mercado antes de invertir en el desarrollo a gran escala.",
+                    "definitionOfReady": "Se han definido los criterios de viabilidad y se han establecido las reglas para las pruebas.",
+                    "definitionOfDone": "Se han realizado las pruebas de viabilidad y se han obtenido resultados que han sido compartidos con el equipo de desarrollo."
+                }
+            ]
+        },
+        {
+            "name": "Story Mapping",
+            "description": "Utilizar técnicas de story mapping para visualizar y planificar la secuencia de entregas.",
+            "userStories": [
+                {
+                    "name": "Definición de las funcionalidades de la aplicación",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir las funcionalidades de la aplicación para poder utilizar técnicas de story mapping.",
+                    "definitionOfReady": "Se han definido las características y funcionalidades de la aplicación y se han establecido las reglas para su definición.",
+                    "definitionOfDone": "Se han definido las funcionalidades de la aplicación y se han compartido con el equipo de desarrollo."
+                },
+                {
+                    "name": "Creación del story map",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder crear el story map para visualizar y planificar la secuencia de entregas.",
+                    "definitionOfReady": "Se han definido las funcionalidades de la aplicación y se han establecido las reglas para la creación del story map.",
+                    "definitionOfDone": "Se ha creado el story map y se ha compartido con el equipo de desarrollo para obtener retroalimentación."
+                }
+            ]
+        },
+        {
+            "name": "Encuestas de Usuario",
+            "description": "Realizar encuestas a usuarios potenciales para recopilar datos cuantitativos sobre sus necesidades.",
+            "userStories": [
+                {
+                    "name": "Definición de los usuarios potenciales",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir los usuarios potenciales para poder realizar las encuestas de manera efectiva.",
+                    "definitionOfReady": "Se han definido los usuarios potenciales y se han establecido las reglas para las encuestas.",
+                    "definitionOfDone": "Se han definido los usuarios potenciales y se han compartido con el equipo de desarrollo."
+                },
+                {
+                    "name": "Realización de encuestas a usuarios potenciales",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder realizar encuestas a usuarios potenciales para recopilar datos cuantitativos sobre sus necesidades.",
+                    "definitionOfReady": "Se han definido los usuarios potenciales y se han establecido las reglas para las encuestas.",
+                    "definitionOfDone": "Se han realizado las encuestas a usuarios potenciales y se han recopilado datos cuantitativos sobre sus necesidades."
+                }
+            ]
+        },
+        {
+            "name": "Prototipado Rápido",
+            "description": "Construir prototipos rápidos y de bajo costo para obtener retroalimentación temprana de los usuarios.",
+            "userStories": [
+                {
+                    "name": "Definición de los elementos del prototipo",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir los elementos del prototipo para poder construirlo de manera efectiva.",
+                    "definitionOfReady": "Se han definido los elementos necesarios para el prototipo y se han establecido las reglas para su construcción.",
+                    "definitionOfDone": "Se han definido los elementos del prototipo y se han compartido con el equipo de desarrollo."
+                },
+                {
+                    "name": "Construcción del prototipo",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder construir el prototipo para obtener retroalimentación temprana de los usuarios.",
+                    "definitionOfReady": "Se han definido los elementos del prototipo y se han establecido las reglas para su construcción.",
+                    "definitionOfDone": "Se ha construido el prototipo y se ha obtenido retroalimentación temprana de los usuarios."
+                }
+            ]
+        },
+        {
+            "name": "Panel de Expertos",
+            "description": "Reunir un panel de expertos para revisar y validar la dirección y enfoque del proyecto.",
+            "userStories": [
+                {
+                    "name": "Definición de los expertos",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder definir los expertos para poder reunirlos de manera efectiva.",
+                    "definitionOfReady": "Se han definido los expertos y se han establecido las reglas para su reunión.",
+                    "definitionOfDone": "Se han definido los expertos y se han compartido con el equipo de desarrollo."
+                },
+                {
+                    "name": "Reunión con el panel de expertos",
+                    "description": "Como miembro del equipo de desarrollo, quiero poder reunirme con el panel de expertos para revisar y validar la dirección y enfoque del proyecto.",
+                    "definitionOfReady": "Se han definido los expertos y se han establecido las reglas para la reunión.",
+                    "definitionOfDone": "Se ha reunido con el panel de expertos y se ha revisado y validado la dirección y enfoque del proyecto."
+                }
+            ]
+        }
+    ]
+}

@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 const SpecificationsPage = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { checkedItems, handlePrompts, promptResponse } =
+  const { checkedItems, handlePrompts, promptResponse, loading } =
     React.useContext(MavContext);
   const [promptItem, setPromptItem] = React.useState({});
   const [generalChanged, setGeneralChanged] = React.useState(false);
@@ -51,8 +51,8 @@ const SpecificationsPage = () => {
   }, [checkedItems]);
 
   useEffect(() => {
-    if (Object.keys(promptResponse).length > 0) navigate('/results');
-  }, [promptResponse]);
+    if (Object.keys(promptResponse).length > 0 && !loading) navigate('/results');
+  }, [promptResponse, loading]);
 
   const handleSubmit = () => {
     const newPromptItem = promptItem;
@@ -130,6 +130,7 @@ const SpecificationsPage = () => {
         type="submit"
         className={classes.button}
         onClick={handleSubmit}
+        disabled={!generalChanged}
       >
         Continuar
       </Button>

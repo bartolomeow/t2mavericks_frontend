@@ -8,6 +8,7 @@ const MavContextProvider = (props) => {
   const [document, setDocument] = useState(undefined);
   const [prompts, setPrompts] = useState({});
   const [petitionError, setPetitionError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [promptResponse, setPromptResponse] = useState({});
 
   const handleCheckedItems = (newCheckedItems) => {
@@ -15,6 +16,7 @@ const MavContextProvider = (props) => {
   };
 
   const handleDocument = (newDocument) => {
+    setLoading(true);
     RequestService.put('/document', newDocument)
       .then((res) => {
         setPetitionError(false);
@@ -23,23 +25,27 @@ const MavContextProvider = (props) => {
       .catch((error) => {
         setPetitionError(true);
       });
+      setLoading(false);
   };
 
   const handlePrompts = (prompts) => {
+    setLoading(true);
+    let promptObj = {};
     Object.keys(prompts).map((prompt) => {
       if (prompt !== 'general')
         RequestService.post('/prompts', prompts[prompt])
           .then((res) => {
-            //!TODO hacer set de cada prompt bien hecho, separando por cada prompt su respuesta correspondiente
-            setPromptResponse({ ...promptResponse, prompt: res.data });
+            promptObj = ({ ...promptObj, [prompt]: res.data.data });
             setPetitionError(false);
-          })
-          .catch((error) => {
-            setPetitionError(true);
-          });
+            setPromptResponse(promptObj);
+        setPrompts(prompts);
+      })
+      .catch((error) => {
+        setPetitionError(true);
+      });
     });
-
-    setPrompts(prompts);
+    setLoading(false);
+        
   };
 
   return (
@@ -50,6 +56,7 @@ const MavContextProvider = (props) => {
         document,
         prompts,
         promptResponse,
+        loading,
         handleCheckedItems,
         handleDocument,
         handlePrompts,
