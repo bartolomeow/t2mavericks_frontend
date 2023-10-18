@@ -46,7 +46,7 @@ const SpecificationsPage = () => {
     promptObj['general'] = '';
 
     setPromptItem(promptObj);
-  }, []);
+  }, [checkedItems]);
 
   const handleSubmit = () => {
     handlePrompts(promptItem);
