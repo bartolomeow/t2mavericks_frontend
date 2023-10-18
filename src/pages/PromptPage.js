@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
 const SpecificationsPage = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { checkedItems, handlePrompts } = React.useContext(MavContext);
+  const { checkedItems, handlePrompts, promptResponse } =
+    React.useContext(MavContext);
   const [promptItem, setPromptItem] = React.useState({});
   const [generalChanged, setGeneralChanged] = React.useState(false);
 
@@ -49,6 +50,10 @@ const SpecificationsPage = () => {
     setPromptItem(promptObj);
   }, [checkedItems]);
 
+  useEffect(() => {
+    if (Object.keys(promptResponse).length > 0) navigate('/results');
+  }, [promptResponse]);
+
   const handleSubmit = () => {
     const newPromptItem = promptItem;
     checkedItems.map((item) => {
@@ -57,7 +62,6 @@ const SpecificationsPage = () => {
     });
 
     handlePrompts(promptItem);
-    navigate('/results');
   };
 
   return (
@@ -76,7 +80,10 @@ const SpecificationsPage = () => {
         fullWidth
         multiline
         onChange={(e) => {
-          setPromptItem({ ...promptItem, general: `Las características de mi proyecto son las siguientes: ${e.target.value}` });
+          setPromptItem({
+            ...promptItem,
+            general: `Las características de mi proyecto son las siguientes: ${e.target.value}`,
+          });
           setGeneralChanged(true);
         }}
       />
@@ -107,7 +114,9 @@ const SpecificationsPage = () => {
               minRows={4}
               onChange={(e) => {
                 const newPromptItem = promptItem;
-                newPromptItem[item] = `Genérame un ${item} con las siguientes especificaciones: ${e.target.value}`;
+                newPromptItem[
+                  item
+                ] = `Genérame un ${item} con las siguientes especificaciones: ${e.target.value}`;
                 setPromptItem(newPromptItem);
               }}
             />

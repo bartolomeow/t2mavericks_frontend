@@ -15,6 +15,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { MavContext } from '../context/MavContext';
 import DialogComponent from '../components/Dialog/Dialog';
+import Loading from '../components/Loading/Loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ResultsPage = () => {
   const classes = useStyles();
-  const { checkedItems } = React.useContext(MavContext);
+  const { checkedItems, promptResponse } = React.useContext(MavContext);
   const [modal, setActiveModal] = React.useState(undefined);
   const handleCopyClick = (content) => {
     navigator.clipboard.writeText(content);
@@ -64,54 +65,50 @@ const ResultsPage = () => {
 
   return (
     <Container maxWidth={false} className={classes.root}>
-      <Typography variant="h2" component="h1" gutterBottom align="center">
-        Aquí van los resultados
-      </Typography>
-      <Grid container spacing={6} columns={12} justifyContent="center">
-        {checkedItems.map((item, i) => (
-          <Grid item xs={4} sm={4} md={4} lg={4} xl={4} key={i}>
-            <Card raised>
-              <CardHeader title={item} />
-              <CardActionArea>
-                <CardContent
-                  className={classes.codeblock}
-                  onClick={openModal(item)}
-                >
-                  <Typography variant="body" className={classes.whiteText}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Vestibulum vitae quam nibh. Cras venenatis pharetra porta.
-                    Vivamus nisl magna, sodales at tempus sed, vestibulum sed
-                    magna. Sed elementum elit sed libero ultricies, a egestas
-                    dolor laoreet. Vivamus placerat luctus justo non
-                    ullamcorper. Nulla a aliquam lacus. Sed vehicula enim in mi
-                    tempor, sed porttitor ligula gravida. Vestibulum aliquet,
-                    orci rutrum tincidunt elementum, nulla mauris pellentesque
-                    felis, quis posuere quam lectus at dolor. Quisque eget massa
-                    lectus. Nulla dictum nisi a lorem sollicitudin commodo.
-                    Quisque aliquam mi quis tincidunt molestie. Sed tincidunt,
-                    purus sit amet convallis ultricies, est dui sodales felis,
-                    quis mollis tortor elit in mauris. Phasellus nec est
-                    suscipit, congue est non, ullamcorper libero. Duis id sem
-                    tellus.
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-              <CardActions>
-                <Button
-                  size="small"
-                  color="primary"
-                  onClick={handleCopyClick('copy')}
-                >
-                  Copiar en el portapapeles
-                </Button>
-                <Button size="small" color="primary" onClick={handleRetryClick}>
-                  Reintentar
-                </Button>
-              </CardActions>
-            </Card>
+      {promptResponse ? (
+        <>
+          <Typography variant="h2" component="h1" gutterBottom align="center">
+            Aquí van los resultados
+          </Typography>
+          <Grid container spacing={6} columns={12} justifyContent="center">
+            {checkedItems.map((item, i) => (
+              <Grid item xs={4} sm={4} md={4} lg={4} xl={4} key={i}>
+                <Card raised>
+                  <CardHeader title={item} />
+                  <CardActionArea>
+                    <CardContent
+                      className={classes.codeblock}
+                      onClick={openModal(item)}
+                    >
+                      <Typography variant="body" className={classes.whiteText}>
+                        {promptResponse[item]}
+                      </Typography>
+                    </CardContent>
+                  </CardActionArea>
+                  <CardActions>
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={handleCopyClick('copy')}
+                    >
+                      Copiar en el portapapeles
+                    </Button>
+                    <Button
+                      size="small"
+                      color="primary"
+                      onClick={handleRetryClick}
+                    >
+                      Reintentar
+                    </Button>
+                  </CardActions>
+                </Card>
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
+        </>
+      ) : (
+        <Loading />
+      )}
       <DialogComponent
         open={modal}
         onClose={() => setActiveModal(undefined)}

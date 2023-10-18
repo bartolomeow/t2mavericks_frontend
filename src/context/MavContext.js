@@ -27,15 +27,16 @@ const MavContextProvider = (props) => {
 
   const handlePrompts = (prompts) => {
     Object.keys(prompts).map((prompt) => {
-      if(prompt !== 'general')
-      RequestService.post('/prompts', prompts[prompt])
-        .then((res) => {
-          setPromptResponse({...promptResponse, prompt: res.data});
-          setPetitionError(false);
-        })
-        .catch((error) => {
-          setPetitionError(true);
-        });
+      if (prompt !== 'general')
+        RequestService.post('/prompts', prompts[prompt])
+          .then((res) => {
+            //!TODO hacer set de cada prompt bien hecho, separando por cada prompt su respuesta correspondiente
+            setPromptResponse({ ...promptResponse, prompt: res.data });
+            setPetitionError(false);
+          })
+          .catch((error) => {
+            setPetitionError(true);
+          });
     });
 
     setPrompts(prompts);
@@ -48,6 +49,7 @@ const MavContextProvider = (props) => {
         checkedItems,
         document,
         prompts,
+        promptResponse,
         handleCheckedItems,
         handleDocument,
         handlePrompts,
