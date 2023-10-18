@@ -25,7 +25,7 @@ const MavContextProvider = (props) => {
       .catch((error) => {
         setPetitionError(true);
       });
-      setLoading(false);
+    setLoading(false);
   };
 
   const handlePrompts = (prompts) => {
@@ -35,17 +35,17 @@ const MavContextProvider = (props) => {
       if (prompt !== 'general')
         RequestService.post('/prompts', prompts[prompt])
           .then((res) => {
-            promptObj = ({ ...promptObj, [prompt]: res.data.data });
+            promptObj = { ...promptObj, [prompt]: res.data.data };
             setPetitionError(false);
             setPromptResponse(promptObj);
-        setPrompts(prompts);
-      })
-      .catch((error) => {
-        setPetitionError(true);
-      });
+            setPrompts(prompts);
+          })
+          .catch((error) => {
+            setPetitionError(true);
+          });
+          return promptObj;
     });
     setLoading(false);
-        
   };
 
   return (

@@ -12,6 +12,7 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useNavigate } from 'react-router-dom';
 import { MavContext } from '../context/MavContext';
+import Loading from '../components/Loading/Loading';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -51,7 +52,8 @@ const SpecificationsPage = () => {
   }, [checkedItems]);
 
   useEffect(() => {
-    if (Object.keys(promptResponse).length > 0 && !loading) navigate('/results');
+    if (Object.keys(promptResponse).length > 0 && !loading)
+      navigate('/results');
   }, [promptResponse, loading]);
 
   const handleSubmit = () => {
@@ -59,6 +61,7 @@ const SpecificationsPage = () => {
     checkedItems.map((item) => {
       const itemDescription = promptItem[item];
       newPromptItem[item] = `${promptItem.general}. ${itemDescription}`;
+      return newPromptItem;
     });
 
     handlePrompts(promptItem);
@@ -66,74 +69,80 @@ const SpecificationsPage = () => {
 
   return (
     <Container maxWidth="sm" className={classes.container}>
-      <Typography
-        variant="h4"
-        component="h1"
-        gutterBottom
-        className={classes.padding}
-      >
-        Inception Deck
-      </Typography>
-      <TextField
-        label="Detalla tus especificaciones generales"
-        variant="outlined"
-        fullWidth
-        multiline
-        onChange={(e) => {
-          setPromptItem({
-            ...promptItem,
-            general: `Las características de mi proyecto son las siguientes: ${e.target.value}`,
-          });
-          setGeneralChanged(true);
-        }}
-      />
-      <Typography
-        variant="h5"
-        component="h1"
-        gutterBottom
-        className={classes.padding}
-      >
-        Especificaciones
-      </Typography>
-      {checkedItems.map((item, i) => (
-        <Accordion className={classes.accordion} key={i}>
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1a-content"
-            id="panel1a-header"
+      {!loading ? (
+        <>
+          <Typography
+            variant="h4"
+            component="h1"
+            gutterBottom
+            className={classes.padding}
           >
-            <Typography>{item}</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <TextField
-              id={`${item}-specifications`}
-              label={`Escribe tus especificaciones sobre ${item}`}
-              variant="outlined"
-              fullWidth
-              multiline
-              minRows={4}
-              onChange={(e) => {
-                const newPromptItem = promptItem;
-                newPromptItem[
-                  item
-                ] = `Genérame un ${item} con las siguientes especificaciones: ${e.target.value}`;
-                setPromptItem(newPromptItem);
-              }}
-            />
-          </AccordionDetails>
-        </Accordion>
-      ))}
+            Inception Deck
+          </Typography>
+          <TextField
+            label="Detalla tus especificaciones generales"
+            variant="outlined"
+            fullWidth
+            multiline
+            onChange={(e) => {
+              setPromptItem({
+                ...promptItem,
+                general: `Las características de mi proyecto son las siguientes: ${e.target.value}`,
+              });
+              setGeneralChanged(true);
+            }}
+          />
+          <Typography
+            variant="h5"
+            component="h1"
+            gutterBottom
+            className={classes.padding}
+          >
+            Especificaciones
+          </Typography>
+          {checkedItems.map((item, i) => (
+            <Accordion className={classes.accordion} key={i}>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+              >
+                <Typography>{item}</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <TextField
+                  id={`${item}-specifications`}
+                  label={`Escribe tus especificaciones sobre ${item}`}
+                  variant="outlined"
+                  fullWidth
+                  multiline
+                  minRows={4}
+                  onChange={(e) => {
+                    const newPromptItem = promptItem;
+                    newPromptItem[
+                      item
+                    ] = `Genérame un ${item} con las siguientes especificaciones: ${e.target.value}`;
+                    setPromptItem(newPromptItem);
+                  }}
+                />
+              </AccordionDetails>
+            </Accordion>
+          ))}
 
-      <Button
-        variant="contained"
-        color="primary"
-        type="submit"
-        className={classes.button}
-        onClick={handleSubmit}
-        disabled={!generalChanged}
-      >
-        Continuar
-      </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            className={classes.button}
+            onClick={handleSubmit}
+            disabled={!generalChanged}
+          >
+            Continuar
+          </Button>
+        </>
+      ) : (
+        <Loading />
+      )}
     </Container>
   );
 };

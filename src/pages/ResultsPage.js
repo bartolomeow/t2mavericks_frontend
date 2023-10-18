@@ -11,8 +11,6 @@ import {
   Grid,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import axios from 'axios';
-import MockAdapter from 'axios-mock-adapter';
 import { MavContext } from '../context/MavContext';
 import DialogComponent from '../components/Dialog/Dialog';
 import Loading from '../components/Loading/Loading';
@@ -37,26 +35,11 @@ const useStyles = makeStyles((theme) => ({
 
 const ResultsPage = () => {
   const classes = useStyles();
-  const { checkedItems, promptResponse, loading } = React.useContext(MavContext);
+  const { checkedItems, promptResponse, loading } =
+    React.useContext(MavContext);
   const [modal, setActiveModal] = React.useState(undefined);
   const handleCopyClick = (content) => {
     navigator.clipboard.writeText(content);
-  };
-  const handleRetryClick = () => {
-    const mock = new MockAdapter(axios, { delayResponse: 2000 });
-
-    mock.onGet('/apiendpoint').reply(200, {
-      users: [{ id: 1, name: 'John Smith' }],
-    });
-
-    axios
-      .get('/apiendpoint')
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.error('There was a problem with the fetch operation: ', error);
-      });
   };
 
   const openModal = (item) => () => {
@@ -89,16 +72,9 @@ const ResultsPage = () => {
                     <Button
                       size="small"
                       color="primary"
-                      onClick={handleCopyClick('copy')}
+                      onClick={() => handleCopyClick(promptResponse[item])}
                     >
                       Copiar en el portapapeles
-                    </Button>
-                    <Button
-                      size="small"
-                      color="primary"
-                      onClick={handleRetryClick}
-                    >
-                      Reintentar
                     </Button>
                   </CardActions>
                 </Card>
