@@ -8,6 +8,7 @@ const MavContextProvider = (props) => {
   const [document, setDocument] = useState(undefined);
   const [prompts, setPrompts] = useState({});
   const [petitionError, setPetitionError] = useState(false);
+  const [promptResponse, setPromptResponse] = useState({});
 
   const handleCheckedItems = (newCheckedItems) => {
     setCheckedItems(newCheckedItems);
@@ -29,6 +30,7 @@ const MavContextProvider = (props) => {
       if(prompt !== 'general')
       RequestService.post('/prompts', prompts[prompt])
         .then((res) => {
+          setPromptResponse({...promptResponse, prompt: res.data});
           setPetitionError(false);
         })
         .catch((error) => {
