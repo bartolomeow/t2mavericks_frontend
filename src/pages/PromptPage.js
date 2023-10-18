@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   TextField,
   makeStyles,
@@ -35,9 +35,21 @@ const useStyles = makeStyles((theme) => ({
 const SpecificationsPage = () => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { checkedItems } = React.useContext(MavContext);
+  const { checkedItems, handlePrompts } = React.useContext(MavContext);
+  const [promptItem, setPromptItem] = React.useState({});
+
+  useEffect(() => {
+    let promptObj = {};
+    checkedItems.forEach((item) => {
+      promptObj = {...promptObj, [item]: ''}
+    });
+    promptObj['general'] = '';
+    
+    setPromptItem(promptObj);
+  }, [])
 
   const handleSubmit = () => {
+    handlePrompts(promptItem);
     navigate('/results');
   };
 
@@ -56,12 +68,20 @@ const SpecificationsPage = () => {
         variant="outlined"
         fullWidth
         multiline
+        onChange={(e) => {
+          setPromptItem({...promptItem, 'general': e.target.value});
+        }}
       />
-      <Typography variant="h5" component="h1" gutterBottom className={classes.padding}>
+      <Typography
+        variant="h5"
+        component="h1"
+        gutterBottom
+        className={classes.padding}
+      >
         Especificaciones
       </Typography>
-      {checkedItems.map((item) => (
-        <Accordion className={classes.accordion}>
+      {checkedItems.map((item, i) => (
+        <Accordion className={classes.accordion} key={i}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -71,11 +91,17 @@ const SpecificationsPage = () => {
           </AccordionSummary>
           <AccordionDetails>
             <TextField
+              id={`${item}-specifications`}
               label={`Escribe tus especificaciones sobre ${item}`}
               variant="outlined"
               fullWidth
               multiline
               minRows={4}
+              onChange={(e) => {
+                const newPromptItem = promptItem;
+                newPromptItem[item] = e.target.value;
+                setPromptItem(newPromptItem);
+              }}
             />
           </AccordionDetails>
         </Accordion>

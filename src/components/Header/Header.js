@@ -6,7 +6,7 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleLandingClick = () => {
-    navigate('/');
+    navigate('/landing');
   };
 
   const handleAboutClick = () => {

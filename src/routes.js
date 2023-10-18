@@ -7,14 +7,16 @@ import MavContextProvider from './context/MavContext';
 // Lazy load pages and components
 const AboutPage = lazy(() => import('./pages/AboutPage'));
 const PromptPage = lazy(() => import('./pages/PromptPage'));
+const UploadDocument = lazy(() => import('./pages/UploadDocument'));
 const ResultsPage = lazy(() => import('./pages/ResultsPage'));
 
 function Routes() {
   return (
     <MavContextProvider>
       <Routing>
-        <Route exact path="/" element={<LandingPage />} />
+        <Route exact path="/landing" element={<LandingPage />} />
         <Route
+          exact
           path="/about"
           element={
             <Suspense fallback={<Loading />}>
@@ -23,6 +25,7 @@ function Routes() {
           }
         />
         <Route
+          exact
           path="/prompts"
           element={
             <Suspense fallback={<Loading />}>
@@ -31,6 +34,16 @@ function Routes() {
           }
         />
         <Route
+          exact
+          path="/"
+          element={
+            <Suspense fallback={<Loading />}>
+              <UploadDocument />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
           path="/results"
           element={
             <Suspense fallback={<Loading />}>
