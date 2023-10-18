@@ -25,10 +25,10 @@ const MavContextProvider = (props) => {
   };
 
   const handlePrompts = (prompts) => {
-    Object.keys(prompts).map((prompt, i) => {
+    Object.keys(prompts).map((prompt) => {
+      if(prompt !== 'general')
       RequestService.post('/prompts', prompts[prompt])
         .then((res) => {
-          console.log(res);
           setPetitionError(false);
         })
         .catch((error) => {
