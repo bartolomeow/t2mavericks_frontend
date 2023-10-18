@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ResultsPage() {
+const ResultsPage = () => {
   const classes = useStyles();
   const { checkedItems } = React.useContext(MavContext);
   const [modal, setActiveModal] = React.useState(undefined);
@@ -60,7 +60,7 @@ export default function ResultsPage() {
 
   const openModal = (item) => () => {
     setActiveModal(item);
-  }
+  };
 
   return (
     <Container maxWidth={false} className={classes.root}>
@@ -73,7 +73,10 @@ export default function ResultsPage() {
             <Card raised>
               <CardHeader title={item} />
               <CardActionArea>
-                <CardContent className={classes.codeblock} onClick={openModal(item)}>
+                <CardContent
+                  className={classes.codeblock}
+                  onClick={openModal(item)}
+                >
                   <Typography variant="body" className={classes.whiteText}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                     Vestibulum vitae quam nibh. Cras venenatis pharetra porta.
@@ -109,7 +112,13 @@ export default function ResultsPage() {
           </Grid>
         ))}
       </Grid>
-      <DialogComponent open={modal} onClose={() => setActiveModal(undefined)} item={modal}/>
+      <DialogComponent
+        open={modal}
+        onClose={() => setActiveModal(undefined)}
+        item={modal}
+      />
     </Container>
   );
-}
+};
+
+export default ResultsPage;

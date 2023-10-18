@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function LandingPage() {
+const LandingPage = () => {
   const classes = useStyles();
   const { checkedItems, handleCheckedItems } = useContext(MavContext);
   const [selectedItems, setSelectedItems] = useState(checkedItems);
@@ -60,7 +60,7 @@ function LandingPage() {
 
   const handleSubmit = () => {
     handleCheckedItems(selectedItems);
-    navigate('/results');
+    navigate('/prompts');
   };
 
   return (
@@ -161,6 +161,6 @@ function LandingPage() {
       </form>
     </Container>
   );
-}
+};
 
 export default LandingPage;
