@@ -116,6 +116,7 @@ const ResultsPage = () => {
         open={modal}
         onClose={() => setActiveModal(undefined)}
         item={modal}
+        handleCopy={handleCopyClick}
       />
     </Container>
   );

@@ -19,7 +19,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const DialogComponent = (props) => {
-  const { open, onClose, item } = props;
+  const { open, onClose, item, handleCopy } = props;
 
   return (
     <BootstrapDialog
@@ -60,8 +60,8 @@ const DialogComponent = (props) => {
         </Typography>
       </DialogContent>
       <DialogActions>
-        <Button autoFocus onClick={onClose}>
-          Save changes
+        <Button autoFocus onClick={handleCopy(item)}>
+          Copiar en el portapapeles
         </Button>
       </DialogActions>
     </BootstrapDialog>
