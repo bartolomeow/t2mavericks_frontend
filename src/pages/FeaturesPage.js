@@ -132,7 +132,7 @@ const FeaturesPage = () => {
           </Grid>
           {documentJSON.aiFeatures.length > 0 && (
             <Typography variant="h3" component="h2" gutterBottom align="center">
-              ¿Quieres añadir alguna épica recomendada por la IA?
+              ¿Quieres añadir alguna feature recomendada por la IA?
             </Typography>
           )}
           <Grid
