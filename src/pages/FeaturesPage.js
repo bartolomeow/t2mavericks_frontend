@@ -57,6 +57,10 @@ const FeaturesPage = () => {
     setActiveModal(item);
   };
 
+  React.useEffect(() => {
+    if (rallyZip && confluZip) setLoading(false);
+  }, [rallyZip, confluZip]);
+
   const downloadRallyZip = () => {
     const url = window.URL.createObjectURL(rallyZip);
     const link = document.createElement('a');
@@ -196,6 +200,26 @@ const FeaturesPage = () => {
                 </Grid>
               ))}
           </Grid>
+          {rallyZip && (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={downloadRallyZip}
+              className={classes.margin}
+            >
+              Descargar ZIP de Rally
+            </Button>
+          )}
+          {confluZip && (
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={downloadConfluZip}
+              className={classes.margin}
+            >
+              Descargar ZIP de Confluence
+            </Button>
+          )}
         </>
       ) : (
         <Loading />
@@ -219,27 +243,7 @@ const FeaturesPage = () => {
             handleConflu(documentJSON);
           }}
         >
-          {loading ? <HourglassBottomOutlinedIcon /> : 'Enviar'}
-        </Button>
-      )}
-      {rallyZip && (
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={downloadRallyZip}
-          className={classes.margin}
-        >
-          Descargar ZIP de Rally
-        </Button>
-      )}
-      {confluZip && (
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={downloadConfluZip}
-          className={classes.margin}
-        >
-          Descargar ZIP de Confluence
+          Enviar
         </Button>
       )}
     </Container>

@@ -28,8 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const UploadDocument = () => {
   const classes = useStyles();
-  const { documentJSON, handleDocument } =
-    React.useContext(MavContext);
+  const { documentJSON, handleDocument } = React.useContext(MavContext);
   const [file, setFile] = useState(documentJSON);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
