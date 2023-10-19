@@ -17,7 +17,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { MavContext } from '../context/MavContext';
 import DialogComponent from '../components/Dialog/Dialog';
 import Loading from '../components/Loading/Loading';
-import HourglassBottomOutlinedIcon from '@mui/icons-material/HourglassBottomOutlined';
 
 const useStyles = makeStyles((theme) => ({
   root: {
