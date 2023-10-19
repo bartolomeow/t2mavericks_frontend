@@ -54,10 +54,23 @@ const MavContextProvider = (props) => {
   };
 
   const addFeatures = (feature) => {
+    let newDocumentJSON = documentJSON;
+    const indexDeleteItem = documentJSON.aiFeatures.indexOf(feature);
+    if (indexDeleteItem > -1)
+      newDocumentJSON.aiFeatures.splice(indexDeleteItem, 1);
+
     setDocument({
-      ...documentJSON,
-      features: [...documentJSON.features, feature],
+      ...newDocumentJSON,
+      features: [...newDocumentJSON.features, feature],
     });
+  };
+
+  const cleanContext = () => {
+    setCheckedItems([]);
+    setDocument(undefined);
+    setPrompts({});
+    setPetitionError(false);
+    setPromptResponse({});
   };
 
   return (
@@ -73,6 +86,7 @@ const MavContextProvider = (props) => {
         handleDocument,
         handlePrompts,
         addFeatures,
+        cleanContext,
       }}
     >
       {props.children}

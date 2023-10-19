@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const DialogComponent = (props) => {
-  const { open, onClose, item, handleCopy } = props;
+  const { open, onClose, item } = props;
   const classes = useStyles();
 
   return (

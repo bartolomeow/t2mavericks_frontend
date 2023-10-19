@@ -98,9 +98,11 @@ const FeaturesPage = () => {
               </Grid>
             ))}
           </Grid>
-          <Typography variant="h3" component="h2" gutterBottom align="center">
-            ¿Quieres añadir alguna épica recomendada por la IA?
-          </Typography>
+          {documentJSON.aiFeatures.length > 0 && (
+            <Typography variant="h3" component="h2" gutterBottom align="center">
+              ¿Quieres añadir alguna épica recomendada por la IA?
+            </Typography>
+          )}
           <Grid
             container
             spacing={4}
@@ -108,53 +110,62 @@ const FeaturesPage = () => {
             justifyContent="center"
             className={classes.margin}
           >
-            {documentJSON.aiFeatures.map((item, i) => (
-              <Grid item xs={4} sm={4} md={4} lg={4} xl={4} key={'gridai' + i}>
-                <Card raised>
-                  <CardHeader
-                    title={'Feature: ' + item.name}
-                    className={classes.bold}
-                  />
-                  <CardActionArea>
-                    <CardContent onClick={openModal(item)}>
-                      <Typography variant="body1">
-                        {item.description}
-                      </Typography>
-                      <List
-                        sx={{
-                          width: '100%',
-                          bgcolor: 'background.paper',
-                          display: 'list-item',
-                        }}
+            {documentJSON.aiFeatures.length > 0 &&
+              documentJSON.aiFeatures.map((item, i) => (
+                <Grid
+                  item
+                  xs={4}
+                  sm={4}
+                  md={4}
+                  lg={4}
+                  xl={4}
+                  key={'gridai' + i}
+                >
+                  <Card raised>
+                    <CardHeader
+                      title={'Feature: ' + item.name}
+                      className={classes.bold}
+                    />
+                    <CardActionArea>
+                      <CardContent onClick={openModal(item)}>
+                        <Typography variant="body1">
+                          {item.description}
+                        </Typography>
+                        <List
+                          sx={{
+                            width: '100%',
+                            bgcolor: 'background.paper',
+                            display: 'list-item',
+                          }}
+                        >
+                          {item.userStories.map((us, i) => (
+                            <>
+                              <Divider
+                                className={classes.margin}
+                                key={'featuresai' + i}
+                              />
+                              <ListItem key={'listitem' + i} disableGutters>
+                                <Typography variant="h6">
+                                  {'US: ' + us.name}
+                                </Typography>
+                              </ListItem>
+                            </>
+                          ))}
+                        </List>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                      <Button
+                        size="small"
+                        color="primary"
+                        onClick={() => addFeatures(item)}
                       >
-                        {item.userStories.map((us, i) => (
-                          <>
-                            <Divider
-                              className={classes.margin}
-                              key={'featuresai' + i}
-                            />
-                            <ListItem key={'listitem' + i} disableGutters>
-                              <Typography variant="h6">
-                                {'US: ' + us.name}
-                              </Typography>
-                            </ListItem>
-                          </>
-                        ))}
-                      </List>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions>
-                    <Button
-                      size="small"
-                      color="primary"
-                      onClick={() => addFeatures(item)}
-                    >
-                      Añadir feature
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Grid>
-            ))}
+                        Añadir feature
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
           </Grid>
         </>
       ) : (
@@ -162,11 +173,20 @@ const FeaturesPage = () => {
       )}
       {modal && (
         <DialogComponent
-          open={modal}
+          open={!!modal}
           onClose={() => setActiveModal(undefined)}
           item={modal}
         />
       )}
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.margin}
+        disabled={!documentJSON}
+        onClick={() => {}}
+      >
+        Continuar
+      </Button>
     </Container>
   );
 };

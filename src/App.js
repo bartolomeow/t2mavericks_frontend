@@ -6,12 +6,10 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { BrowserRouter } from 'react-router-dom';
 import Routes from './routes';
-import Header from './components/Header/Header';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Header />
       <Routes />
     </BrowserRouter>
   );
