@@ -18,7 +18,7 @@ const Header = () => {
         <Typography variant="h6" style={{ flexGrow: 1 }}>
           T2Mavericks
         </Typography>
-        <Button color="inherit" onClick={() => handleLandingClick}>
+        <Button color="inherit" onClick={() => handleLandingClick()}>
           Inicio
         </Button>
       </Toolbar>

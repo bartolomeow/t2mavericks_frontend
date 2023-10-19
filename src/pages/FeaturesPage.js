@@ -206,7 +206,7 @@ const FeaturesPage = () => {
           item={modal}
         />
       )}
-      {rallyZip && (
+      {!rallyZip && !confluZip && (
         <Button
           variant="contained"
           color="primary"

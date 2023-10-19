@@ -1,12 +1,11 @@
 import React, { createContext, useState } from 'react';
 import RequestService from '../services/request-service';
-import { saveAs } from 'file-saver';
 
 export const MavContext = createContext();
 
 const MavContextProvider = (props) => {
   const [checkedItems, setCheckedItems] = useState([]);
-  const [loading, setLoading] = useState(false);
+  let loading = false;
   const [documentJSON, setDocument] = useState(undefined);
   const [prompts, setPrompts] = useState({});
   const [petitionError, setPetitionError] = useState(false);
@@ -19,7 +18,7 @@ const MavContextProvider = (props) => {
   };
 
   const handleDocument = (newDocument) => {
-    setLoading(true);
+    loading = true;
     let formData = new FormData();
     formData.append('file', newDocument);
     RequestService.postDocument(
@@ -33,11 +32,11 @@ const MavContextProvider = (props) => {
       .catch((error) => {
         setPetitionError(true);
       });
-    setLoading(false);
+    loading = false;
   };
 
   const handleFeatures = (features) => {
-    setLoading(true);
+    loading = true;
     RequestService.postDocument(
       'https://868xnggv-8080.uks1.devtunnels.ms/generate/rally',
       features,
@@ -52,11 +51,11 @@ const MavContextProvider = (props) => {
       .catch((error) => {
         setPetitionError(true);
       });
-    setLoading(false);
+    loading = false;
   };
 
   const handleConflu = (features) => {
-    setLoading(true);
+    loading = true;
     RequestService.postDocument(
       'https://868xnggv-8080.uks1.devtunnels.ms/generate/conflu',
       features,
@@ -66,16 +65,16 @@ const MavContextProvider = (props) => {
         setPetitionError(false);
         const zip = res.data;
         const blob = new Blob([zip], { type: 'application/octet-stream' });
-        setRallyZip(blob);
+        setConfluZip(blob);
       })
       .catch((error) => {
         setPetitionError(true);
       });
-    setLoading(false);
+    loading = false;
   };
 
   const handlePrompts = (prompts) => {
-    setLoading(true);
+    loading = true;
     let promptObj = {};
     Object.keys(prompts).map((prompt) => {
       if (prompt !== 'general')
@@ -91,7 +90,7 @@ const MavContextProvider = (props) => {
           });
       return promptObj;
     });
-    setLoading(false);
+    loading = false;
   };
 
   const addFeatures = (feature) => {

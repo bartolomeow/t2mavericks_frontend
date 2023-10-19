@@ -86,12 +86,9 @@ const RequestService = {
       });
   },
   postDocument: (url, body, type) => {
-    // const mock = new MockAdapter(axios, { delayResponse: 500 });
+    const mock = new MockAdapter(axios, { delayResponse: 5000 });
 
-    // mock.onPost(url).reply(200, {
-    //   message: 'Request successful',
-    //   data: epicsAI,
-    // });
+    mock.onPost(url).reply(200, epicsAI);
 
     const getConfig = () => {
       const configArr = {

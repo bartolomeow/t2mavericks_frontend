@@ -6,10 +6,10 @@ import MavContextProvider from './context/MavContext';
 import Header from './components/Header/Header';
 
 // Lazy load pages and components
-const AboutPage = lazy(() => import('./pages/AboutPage'));
-const PromptPage = lazy(() => import('./pages/PromptPage'));
+// const AboutPage = lazy(() => import('./pages/AboutPage'));
+// const PromptPage = lazy(() => import('./pages/PromptPage'));
 const UploadDocument = lazy(() => import('./pages/UploadDocument'));
-const ResultsPage = lazy(() => import('./pages/ResultsPage'));
+// const ResultsPage = lazy(() => import('./pages/ResultsPage'));
 const FeaturesPage = lazy(() => import('./pages/FeaturesPage'));
 
 function Routes() {
