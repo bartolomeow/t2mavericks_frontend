@@ -4,14 +4,12 @@ import RequestService from '../services/request-service';
 export const MavContext = createContext();
 
 const MavContextProvider = (props) => {
-  let loading = false;
   const [documentJSON, setDocument] = useState(undefined);
   const [petitionError, setPetitionError] = useState({});
   const [rallyZip, setRallyZip] = useState(undefined);
   const [confluZip, setConfluZip] = useState(undefined);
 
   const handleDocument = (newDocument) => {
-    loading = true;
     let formData = new FormData();
     formData.append('file', newDocument);
     RequestService.postDocument(
@@ -25,11 +23,9 @@ const MavContextProvider = (props) => {
       .catch((error) => {
         setPetitionError(error);
       });
-    loading = false;
   };
 
   const handleFeatures = (features) => {
-    loading = true;
     RequestService.postDocument(
       'https://868xnggv-8080.uks1.devtunnels.ms/generate/rally',
       features,
@@ -44,11 +40,9 @@ const MavContextProvider = (props) => {
       .catch((error) => {
         setPetitionError(error);
       });
-    loading = false;
   };
 
   const handleConflu = (features) => {
-    loading = true;
     RequestService.postDocument(
       'https://868xnggv-8080.uks1.devtunnels.ms/generateDocumentation',
       features,
@@ -64,7 +58,6 @@ const MavContextProvider = (props) => {
         setPetitionError(error);
         setConfluZip(undefined);
       });
-    loading = false;
   };
 
   const addFeatures = (feature) => {
@@ -91,7 +84,6 @@ const MavContextProvider = (props) => {
       value={{
         petitionError,
         documentJSON,
-        loading,
         rallyZip,
         confluZip,
         handleDocument,

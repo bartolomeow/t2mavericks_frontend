@@ -28,9 +28,10 @@ const useStyles = makeStyles((theme) => ({
 
 const UploadDocument = () => {
   const classes = useStyles();
-  const { documentJSON, handleDocument, loading } =
+  const { documentJSON, handleDocument } =
     React.useContext(MavContext);
   const [file, setFile] = useState(documentJSON);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,6 +45,7 @@ const UploadDocument = () => {
   };
 
   const handleUpload = () => {
+    setLoading(true);
     handleDocument(file);
   };
 

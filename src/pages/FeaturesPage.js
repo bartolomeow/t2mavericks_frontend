@@ -17,6 +17,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { MavContext } from '../context/MavContext';
 import DialogComponent from '../components/Dialog/Dialog';
 import Loading from '../components/Loading/Loading';
+import HourglassBottomOutlinedIcon from '@mui/icons-material/HourglassBottomOutlined';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,7 +44,6 @@ const FeaturesPage = () => {
   const classes = useStyles();
   const {
     documentJSON,
-    loading,
     addFeatures,
     handleFeatures,
     handleConflu,
@@ -51,6 +51,7 @@ const FeaturesPage = () => {
     confluZip,
   } = React.useContext(MavContext);
   const [modal, setActiveModal] = React.useState(undefined);
+  const [loading, setLoading] = React.useState(false);
 
   const openModal = (item) => () => {
     setActiveModal(item);
@@ -81,7 +82,7 @@ const FeaturesPage = () => {
       {!loading ? (
         <>
           <Typography variant="h2" component="h1" gutterBottom align="center">
-            Épicas
+            Features
           </Typography>
           <Grid
             container
@@ -213,11 +214,12 @@ const FeaturesPage = () => {
           className={classes.margin}
           disabled={!documentJSON}
           onClick={() => {
+            setLoading(true);
             handleFeatures(documentJSON);
             handleConflu(documentJSON);
           }}
         >
-          Continuar
+          {loading ? <HourglassBottomOutlinedIcon /> : 'Enviar'}
         </Button>
       )}
       {rallyZip && (
