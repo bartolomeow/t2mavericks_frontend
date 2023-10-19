@@ -12,10 +12,6 @@ const Header = () => {
     navigate('/');
   };
 
-  const handleAboutClick = () => {
-    navigate('/about');
-  };
-
   return (
     <AppBar position="static">
       <Toolbar>
@@ -24,9 +20,6 @@ const Header = () => {
         </Typography>
         <Button color="inherit" onClick={() => handleLandingClick}>
           Inicio
-        </Button>
-        <Button color="inherit" onClick={() => handleAboutClick}>
-          Sobre nosotros
         </Button>
       </Toolbar>
     </AppBar>

@@ -12,6 +12,7 @@ const MavContextProvider = (props) => {
   const [petitionError, setPetitionError] = useState(false);
   const [promptResponse, setPromptResponse] = useState({});
   const [rallyZip, setRallyZip] = useState(undefined);
+  const [confluZip, setConfluZip] = useState(undefined);
 
   const handleCheckedItems = (newCheckedItems) => {
     setCheckedItems(newCheckedItems);
@@ -39,6 +40,25 @@ const MavContextProvider = (props) => {
     setLoading(true);
     RequestService.postDocument(
       'https://868xnggv-8080.uks1.devtunnels.ms/generate/rally',
+      features,
+      'arraybuffer'
+    )
+      .then((res) => {
+        setPetitionError(false);
+        const zip = res.data;
+        const blob = new Blob([zip], { type: 'application/octet-stream' });
+        setRallyZip(blob);
+      })
+      .catch((error) => {
+        setPetitionError(true);
+      });
+    setLoading(false);
+  };
+
+  const handleConflu = (features) => {
+    setLoading(true);
+    RequestService.postDocument(
+      'https://868xnggv-8080.uks1.devtunnels.ms/generate/conflu',
       features,
       'arraybuffer'
     )
@@ -92,6 +112,8 @@ const MavContextProvider = (props) => {
     setPrompts({});
     setPetitionError(false);
     setPromptResponse({});
+    setRallyZip(undefined);
+    setConfluZip(undefined);
   };
 
   return (
@@ -104,11 +126,13 @@ const MavContextProvider = (props) => {
         promptResponse,
         loading,
         rallyZip,
+        confluZip,
         handleCheckedItems,
         handleDocument,
         handlePrompts,
         addFeatures,
         handleFeatures,
+        handleConflu,
         cleanContext,
       }}
     >

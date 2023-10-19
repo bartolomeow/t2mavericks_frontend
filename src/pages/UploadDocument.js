@@ -43,19 +43,6 @@ const UploadDocument = () => {
     setFile(event.target.files[0]);
   };
 
-  // const handleDownload = () => {
-  //   const json = JSON.stringify(documentJSON);
-  //   const blob = new Blob([json], { type: 'application/json' });
-  //   const url = URL.createObjectURL(blob);
-  //   const link = document.createElement('a');
-  //   link.setAttribute('href', url);
-  //   link.setAttribute('download', 'document.json');
-  //   link.style.visibility = 'hidden';
-  //   document.body.appendChild(link);
-  //   link.click();
-  //   document.body.removeChild(link);
-  // };
-
   const handleUpload = () => {
     handleDocument(file);
   };
@@ -111,26 +98,6 @@ const UploadDocument = () => {
           Enviar
         </Button>
       )}
-      {/* {documentJSON && (
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleDownload}
-          className={classes.button}
-        >
-          Descargar CSV para Rally
-        </Button>
-      )}
-      {documentJSON && (
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleDownload}
-          className={classes.button}
-        >
-          Importar a Rally
-        </Button>
-      )} */}
     </div>
   ) : (
     <Loading />

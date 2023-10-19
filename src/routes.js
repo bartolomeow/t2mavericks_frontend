@@ -18,7 +18,7 @@ function Routes() {
       <Header />
       <Routing>
         <Route exact path="/landing" element={<LandingPage />} />
-        <Route
+        {/* <Route
           exact
           path="/about"
           element={
@@ -35,7 +35,7 @@ function Routes() {
               <PromptPage />
             </Suspense>
           }
-        />
+        /> */}
         <Route
           exact
           path="/"
@@ -45,7 +45,7 @@ function Routes() {
             </Suspense>
           }
         />
-        <Route
+        {/* <Route
           exact
           path="/results"
           element={
@@ -53,7 +53,7 @@ function Routes() {
               <ResultsPage />
             </Suspense>
           }
-        />
+        /> */}
         <Route
           exact
           path="/features"
