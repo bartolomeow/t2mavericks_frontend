@@ -63,7 +63,7 @@ const ResultsPage = () => {
                       className={classes.codeblock}
                       onClick={openModal(item)}
                     >
-                      <Typography variant="body" className={classes.whiteText}>
+                      <Typography variant="body1" className={classes.whiteText}>
                         {promptResponse[item]}
                       </Typography>
                     </CardContent>

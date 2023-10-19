@@ -9,6 +9,7 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const PromptPage = lazy(() => import('./pages/PromptPage'));
 const UploadDocument = lazy(() => import('./pages/UploadDocument'));
 const ResultsPage = lazy(() => import('./pages/ResultsPage'));
+const FeaturesPage = lazy(() => import('./pages/FeaturesPage'));
 
 function Routes() {
   return (
@@ -48,6 +49,15 @@ function Routes() {
           element={
             <Suspense fallback={<Loading />}>
               <ResultsPage />
+            </Suspense>
+          }
+        />
+        <Route
+          exact
+          path="/features"
+          element={
+            <Suspense fallback={<Loading />}>
+              <FeaturesPage />
             </Suspense>
           }
         />

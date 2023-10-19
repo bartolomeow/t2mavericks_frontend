@@ -4,8 +4,8 @@ import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Typography from '@material-ui/core/Typography';
 import { useNavigate } from 'react-router-dom';
-import CheckCircleOutlineRoundedIcon from '@mui/icons-material/CheckCircleOutlineRounded';
 import { MavContext } from '../context/MavContext';
+import Loading from '../components/Loading/Loading';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    height: '100vh',
+    height: '85vh',
   },
   input: {
     display: 'none',
@@ -28,41 +28,60 @@ const useStyles = makeStyles((theme) => ({
 
 const UploadDocument = () => {
   const classes = useStyles();
-  const { document, handleDocument } = React.useContext(MavContext);
-  const [file, setFile] = useState(document);
-  const [success, setSuccess] = useState(false);
+  const { documentJSON, handleDocument, loading } =
+    React.useContext(MavContext);
+  const [file, setFile] = useState(documentJSON);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (document) {
-      navigate('/landing');
+    if (documentJSON) {
+      navigate('/features');
     }
-  }, [document, navigate]);
+  }, [documentJSON, navigate]);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
 
+  // const handleDownload = () => {
+  //   const json = JSON.stringify(documentJSON);
+  //   const blob = new Blob([json], { type: 'application/json' });
+  //   const url = URL.createObjectURL(blob);
+  //   const link = document.createElement('a');
+  //   link.setAttribute('href', url);
+  //   link.setAttribute('download', 'document.json');
+  //   link.style.visibility = 'hidden';
+  //   document.body.appendChild(link);
+  //   link.click();
+  //   document.body.removeChild(link);
+  // };
+
   const handleUpload = () => {
     handleDocument(file);
-    setSuccess(true);
   };
 
-  return (
+  return !loading ? (
     <div className={classes.root}>
       <input
-        accept=".csv"
+        accept=".xlsx"
         className={classes.input}
         id="contained-button-file"
         multiple
         type="file"
         onChange={handleFileChange}
       />
-      <Typography variant="h4" component="h1" gutterBottom>
-        Subida de documentos
+      <Typography
+        variant="h2"
+        component="h1"
+        gutterBottom
+        align="center"
+        className={classes.gradientText}
+      >
+        ¡Hola, soy Maverick! 🤖
       </Typography>
       <Typography variant="body1" className={classes.padding} gutterBottom>
-        Selecciona los documentos para que la IA los analice
+        Selecciona los documentos resultantes de la Inception para que la IA los
+        analice en formato Excel.
       </Typography>
       <label htmlFor="contained-button-file">
         <Button
@@ -77,20 +96,44 @@ const UploadDocument = () => {
               Archivo seleccionado: {file.name}
             </Typography>
           ) : (
-            'Subir PDF'
+            'Subir archivo'
           )}
         </Button>
       </label>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleUpload}
-        disabled={!file || success}
-        className={classes.button}
-      >
-        {success ? <CheckCircleOutlineRoundedIcon /> : 'Enviar'}
-      </Button>
+      {file && !documentJSON && (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleUpload}
+          disabled={!file || loading}
+          className={classes.button}
+        >
+          Enviar
+        </Button>
+      )}
+      {/* {documentJSON && (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleDownload}
+          className={classes.button}
+        >
+          Descargar CSV para Rally
+        </Button>
+      )}
+      {documentJSON && (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleDownload}
+          className={classes.button}
+        >
+          Importar a Rally
+        </Button>
+      )} */}
     </div>
+  ) : (
+    <Loading />
   );
 };
 

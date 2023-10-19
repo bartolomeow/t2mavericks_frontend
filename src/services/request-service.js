@@ -1,7 +1,7 @@
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import epics from '../mocks/epics.json';
-import diagram from '../assets/diagram.png'
+import epicsAI from '../mocks/epicsAI.json';
+import diagram from '../assets/diagram.png';
 
 const RequestService = {
   get: (url, body) => {
@@ -23,7 +23,7 @@ const RequestService = {
   getEpics: (url) => {
     const mock = new MockAdapter(axios, { delayResponse: 2000 });
 
-    mock.onGet(url).reply(200, epics);
+    mock.onGet(url).reply(200, epicsAI);
 
     return axios
       .get(url)
@@ -78,6 +78,29 @@ const RequestService = {
 
     return axios
       .put(url, body)
+      .then((response) => {
+        return response;
+      })
+      .catch((error) => {
+        return error;
+      });
+  },
+  postDocument: (url, body) => {
+    const mock = new MockAdapter(axios, { delayResponse: 500 });
+
+    mock.onPost(url).reply(200, {
+      message: 'Request successful',
+      data: epicsAI,
+    });
+
+    let config = {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_API}`,
+      },
+    };
+
+    return axios
+      .post(url, body, config)
       .then((response) => {
         return response;
       })

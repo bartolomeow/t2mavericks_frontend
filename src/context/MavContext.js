@@ -5,10 +5,10 @@ export const MavContext = createContext();
 
 const MavContextProvider = (props) => {
   const [checkedItems, setCheckedItems] = useState([]);
-  const [document, setDocument] = useState(undefined);
+  const [loading, setLoading] = useState(false);
+  const [documentJSON, setDocument] = useState(undefined);
   const [prompts, setPrompts] = useState({});
   const [petitionError, setPetitionError] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [promptResponse, setPromptResponse] = useState({});
 
   const handleCheckedItems = (newCheckedItems) => {
@@ -17,10 +17,15 @@ const MavContextProvider = (props) => {
 
   const handleDocument = (newDocument) => {
     setLoading(true);
-    RequestService.put('/document', newDocument)
+    let formData = new FormData();
+    formData.append('file', newDocument);
+    RequestService.postDocument(
+      'https://868xnggv-8080.uks1.devtunnels.ms/generate',
+      formData
+    )
       .then((res) => {
         setPetitionError(false);
-        setDocument(newDocument);
+        setDocument(res.data.data);
       })
       .catch((error) => {
         setPetitionError(true);
@@ -43,9 +48,16 @@ const MavContextProvider = (props) => {
           .catch((error) => {
             setPetitionError(true);
           });
-          return promptObj;
+      return promptObj;
     });
     setLoading(false);
+  };
+
+  const addFeatures = (feature) => {
+    setDocument({
+      ...documentJSON,
+      features: [...documentJSON.features, feature],
+    });
   };
 
   return (
@@ -53,13 +65,14 @@ const MavContextProvider = (props) => {
       value={{
         petitionError,
         checkedItems,
-        document,
+        documentJSON,
         prompts,
         promptResponse,
         loading,
         handleCheckedItems,
         handleDocument,
         handlePrompts,
+        addFeatures,
       }}
     >
       {props.children}

@@ -1,0 +1,88 @@
+{
+    "title":"Plataforma de Ideación",
+    "description":"Crear una plataforma en línea para recopilar ideas de manera colaborativa y votar por las mejores.",
+    "features":[
+       {
+          "name":"Crear plataforma de registro",
+          "description":"Permitir a los usuarios registrarse en la plataforma de ideación",
+          "userStories":[
+             {
+                "name":"Registro de usuarios",
+                "description":"Como usuario, quiero poder registrarme en la plataforma de ideación",
+                "definitionOfReady":"La página de registro está diseñada y lista para implementar",
+                "definitionOfDone":"Los usuarios pueden registrarse exitosamente y se almacenan sus datos en la base de datos",
+                "hours":"10"
+             },
+             {
+                "name":"Inicio de sesión de usuarios",
+                "description":"Como usuario registrado, quiero poder iniciar sesión en la plataforma de ideación",
+                "definitionOfReady":"La página de inicio de sesión está diseñada y lista para implementar",
+                "definitionOfDone":"Los usuarios pueden iniciar sesión exitosamente y acceder a su perfil",
+                "hours":"8"
+             }
+          ]
+       },
+       {
+          "name":"Crear funcionalidad de ideación",
+          "description":"Permitir a los usuarios crear y compartir ideas en la plataforma",
+          "userStories":[
+             {
+                "name":"Crear idea",
+                "description":"Como usuario registrado, quiero poder crear y compartir una idea en la plataforma de ideación",
+                "definitionOfReady":"La página de creación de ideas está diseñada y lista para implementar",
+                "definitionOfDone":"Los usuarios pueden crear y compartir ideas exitosamente",
+                "hours":"12"
+             },
+             {
+                "name":"Votar por ideas",
+                "description":"Como usuario registrado, quiero poder votar por las ideas que considero mejores en la plataforma de ideación",
+                "definitionOfReady":"La funcionalidad de votación está diseñada y lista para implementar",
+                "definitionOfDone":"Los usuarios pueden votar por las ideas y se actualiza el ranking de ideas",
+                "hours":"10"
+             }
+          ]
+       }
+    ],
+    "aiFeatures":[
+       {
+          "name":"Crear funcionalidad de comentarios",
+          "description":"Permitir a los usuarios comentar y discutir las ideas en la plataforma",
+          "userStories":[
+             {
+                "name":"Comentar en una idea",
+                "description":"Como usuario registrado, quiero poder comentar y discutir una idea en la plataforma de ideación",
+                "definitionOfReady":"La funcionalidad de comentarios está diseñada y lista para implementar",
+                "definitionOfDone":"Los usuarios pueden comentar en las ideas y se muestra la discusión",
+                "hours":"8"
+             },
+             {
+                "name":"Responder a comentarios",
+                "description":"Como usuario registrado, quiero poder responder a los comentarios en la plataforma de ideación",
+                "definitionOfReady":"La funcionalidad de respuestas a comentarios está diseñada y lista para implementar",
+                "definitionOfDone":"Los usuarios pueden responder a los comentarios y se muestra la respuesta",
+                "hours":"6"
+             }
+          ]
+       },
+       {
+          "name":"Crear funcionalidad de búsqueda",
+          "description":"Permitir a los usuarios buscar ideas y usuarios en la plataforma",
+          "userStories":[
+             {
+                "name":"Buscar ideas",
+                "description":"Como usuario registrado, quiero poder buscar ideas por palabras clave en la plataforma de ideación",
+                "definitionOfReady":"La funcionalidad de búsqueda de ideas está diseñada y lista para implementar",
+                "definitionOfDone":"Los usuarios pueden buscar ideas por palabras clave y se muestran los resultados relevantes",
+                "hours":"8"
+             },
+             {
+                "name":"Buscar usuarios",
+                "description":"Como usuario registrado, quiero poder buscar otros usuarios por nombre en la plataforma de ideación",
+                "definitionOfReady":"La funcionalidad de búsqueda de usuarios está diseñada y lista para implementar",
+                "definitionOfDone":"Los usuarios pueden buscar otros usuarios por nombre y se muestran los resultados relevantes",
+                "hours":"6"
+             }
+          ]
+       }
+    ]
+ }
