@@ -54,7 +54,7 @@ const SpecificationsPage = () => {
   useEffect(() => {
     if (Object.keys(promptResponse).length > 0 && !loading)
       navigate('/results');
-  }, [promptResponse, loading]);
+  }, [promptResponse, loading, navigate]);
 
   const handleSubmit = () => {
     const newPromptItem = promptItem;
