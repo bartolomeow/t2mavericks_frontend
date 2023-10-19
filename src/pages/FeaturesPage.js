@@ -39,13 +39,26 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 const FeaturesPage = () => {
   const classes = useStyles();
-  const { documentJSON, loading, addFeatures } = React.useContext(MavContext);
+  const { documentJSON, loading, addFeatures, handleFeatures, rallyZip } =
+    React.useContext(MavContext);
   const [modal, setActiveModal] = React.useState(undefined);
 
   const openModal = (item) => () => {
     setActiveModal(item);
+  };
+
+  const downloadRallyZip = () => {
+    const url = window.URL.createObjectURL(rallyZip);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'rally.zip');
+    document.body.appendChild(link);
+    link.click();
+    window.URL.revokeObjectURL(url);
   };
 
   return (
@@ -178,15 +191,25 @@ const FeaturesPage = () => {
           item={modal}
         />
       )}
-      <Button
+      {rallyZip && <Button
         variant="contained"
         color="primary"
         className={classes.margin}
         disabled={!documentJSON}
-        onClick={() => {}}
+        onClick={() => handleFeatures(documentJSON)}
       >
         Continuar
-      </Button>
+      </Button>}
+      {rallyZip && (
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={downloadRallyZip}
+          className={classes.margin}
+        >
+          Descargar ZIP de Rally
+        </Button>
+      )}
     </Container>
   );
 };

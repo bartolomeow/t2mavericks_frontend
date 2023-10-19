@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import RequestService from '../services/request-service';
+import { saveAs } from 'file-saver';
 
 export const MavContext = createContext();
 
@@ -10,6 +11,7 @@ const MavContextProvider = (props) => {
   const [prompts, setPrompts] = useState({});
   const [petitionError, setPetitionError] = useState(false);
   const [promptResponse, setPromptResponse] = useState({});
+  const [rallyZip, setRallyZip] = useState(undefined);
 
   const handleCheckedItems = (newCheckedItems) => {
     setCheckedItems(newCheckedItems);
@@ -25,7 +27,26 @@ const MavContextProvider = (props) => {
     )
       .then((res) => {
         setPetitionError(false);
-        setDocument(res.data.data);
+        setDocument(res.data);
+      })
+      .catch((error) => {
+        setPetitionError(true);
+      });
+    setLoading(false);
+  };
+
+  const handleFeatures = (features) => {
+    setLoading(true);
+    RequestService.postDocument(
+      'https://868xnggv-8080.uks1.devtunnels.ms/generate/rally',
+      features,
+      'arraybuffer'
+    )
+      .then((res) => {
+        setPetitionError(false);
+        const zip = res.data;
+        const blob = new Blob([zip], { type: 'application/octet-stream' });
+        setRallyZip(blob);
       })
       .catch((error) => {
         setPetitionError(true);
@@ -82,10 +103,12 @@ const MavContextProvider = (props) => {
         prompts,
         promptResponse,
         loading,
+        rallyZip,
         handleCheckedItems,
         handleDocument,
         handlePrompts,
         addFeatures,
+        handleFeatures,
         cleanContext,
       }}
     >

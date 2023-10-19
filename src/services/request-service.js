@@ -85,22 +85,32 @@ const RequestService = {
         return error;
       });
   },
-  postDocument: (url, body) => {
-    const mock = new MockAdapter(axios, { delayResponse: 500 });
+  postDocument: (url, body, type) => {
+    // const mock = new MockAdapter(axios, { delayResponse: 500 });
 
-    mock.onPost(url).reply(200, {
-      message: 'Request successful',
-      data: epicsAI,
-    });
+    // mock.onPost(url).reply(200, {
+    //   message: 'Request successful',
+    //   data: epicsAI,
+    // });
 
-    let config = {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_API}`,
-      },
+    const getConfig = () => {
+      const configArr = {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_API}`,
+        },
+        responseType: 'arraybuffer',
+      };
+      const config = {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_API}`,
+        },
+      };
+      if (type) return configArr;
+      else return config;
     };
 
     return axios
-      .post(url, body, config)
+      .post(url, body, getConfig())
       .then((response) => {
         return response;
       })
