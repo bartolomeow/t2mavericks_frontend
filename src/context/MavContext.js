@@ -4,18 +4,11 @@ import RequestService from '../services/request-service';
 export const MavContext = createContext();
 
 const MavContextProvider = (props) => {
-  const [checkedItems, setCheckedItems] = useState([]);
   let loading = false;
   const [documentJSON, setDocument] = useState(undefined);
-  const [prompts, setPrompts] = useState({});
-  const [petitionError, setPetitionError] = useState(false);
-  const [promptResponse, setPromptResponse] = useState({});
+  const [petitionError, setPetitionError] = useState({});
   const [rallyZip, setRallyZip] = useState(undefined);
   const [confluZip, setConfluZip] = useState(undefined);
-
-  const handleCheckedItems = (newCheckedItems) => {
-    setCheckedItems(newCheckedItems);
-  };
 
   const handleDocument = (newDocument) => {
     loading = true;
@@ -26,11 +19,11 @@ const MavContextProvider = (props) => {
       formData
     )
       .then((res) => {
-        setPetitionError(false);
+        setPetitionError({});
         setDocument(res.data);
       })
       .catch((error) => {
-        setPetitionError(true);
+        setPetitionError(error);
       });
     loading = false;
   };
@@ -43,13 +36,13 @@ const MavContextProvider = (props) => {
       'arraybuffer'
     )
       .then((res) => {
-        setPetitionError(false);
+        setPetitionError({});
         const zip = res.data;
         const blob = new Blob([zip], { type: 'application/octet-stream' });
         setRallyZip(blob);
       })
       .catch((error) => {
-        setPetitionError(true);
+        setPetitionError(error);
       });
     loading = false;
   };
@@ -57,39 +50,20 @@ const MavContextProvider = (props) => {
   const handleConflu = (features) => {
     loading = true;
     RequestService.postDocument(
-      'https://868xnggv-8080.uks1.devtunnels.ms/generate/conflu',
+      'https://868xnggv-8080.uks1.devtunnels.ms/generateDocumentation',
       features,
       'arraybuffer'
     )
       .then((res) => {
-        setPetitionError(false);
+        setPetitionError({});
         const zip = res.data;
         const blob = new Blob([zip], { type: 'application/octet-stream' });
         setConfluZip(blob);
       })
       .catch((error) => {
-        setPetitionError(true);
+        setPetitionError(error);
+        setConfluZip(undefined);
       });
-    loading = false;
-  };
-
-  const handlePrompts = (prompts) => {
-    loading = true;
-    let promptObj = {};
-    Object.keys(prompts).map((prompt) => {
-      if (prompt !== 'general')
-        RequestService.post('/prompts', prompts[prompt])
-          .then((res) => {
-            promptObj = { ...promptObj, [prompt]: res.data.data };
-            setPetitionError(false);
-            setPromptResponse(promptObj);
-            setPrompts(prompts);
-          })
-          .catch((error) => {
-            setPetitionError(true);
-          });
-      return promptObj;
-    });
     loading = false;
   };
 
@@ -106,29 +80,21 @@ const MavContextProvider = (props) => {
   };
 
   const cleanContext = () => {
-    setCheckedItems([]);
     setDocument(undefined);
-    setPrompts({});
-    setPetitionError(false);
-    setPromptResponse({});
     setRallyZip(undefined);
     setConfluZip(undefined);
+    setPetitionError({});
   };
 
   return (
     <MavContext.Provider
       value={{
         petitionError,
-        checkedItems,
         documentJSON,
-        prompts,
-        promptResponse,
         loading,
         rallyZip,
         confluZip,
-        handleCheckedItems,
         handleDocument,
-        handlePrompts,
         addFeatures,
         handleFeatures,
         handleConflu,
